@@ -23,7 +23,6 @@ import ml.dmlc.xgboost4j.scala.spark.XGBoostClassificationModel;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 import org.jpmml.sparkml.ClassificationModelConverter;
-import org.jpmml.sparkml.SparkMLEncoder;
 
 public class XGBoostClassificationModelConverter extends ClassificationModelConverter/*<XGBoostClassificationModel>*/ {
 
@@ -38,12 +37,5 @@ public class XGBoostClassificationModelConverter extends ClassificationModelConv
 		Booster booster = model.booster();
 
 		return BoosterUtil.encodeBooster(booster, schema);
-	}
-
-	@Override
-	public MiningModel registerModel(SparkMLEncoder encoder){
-		MiningModel miningModel = (MiningModel)super.registerModel(encoder);
-
-		return BoosterUtil.relocateOutputFields(miningModel);
 	}
 }
