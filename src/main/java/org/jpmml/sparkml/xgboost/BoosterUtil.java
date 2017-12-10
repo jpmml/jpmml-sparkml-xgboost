@@ -71,6 +71,6 @@ public class BoosterUtil {
 
 		Schema xgbSchema = schema.toTransformedSchema(function);
 
-		return learner.encodeMiningModel(xgbSchema);
+		return learner.encodeMiningModel(null, false, xgbSchema);
 	}
 }
