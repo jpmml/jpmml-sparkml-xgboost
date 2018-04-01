@@ -21,18 +21,19 @@ package org.jpmml.sparkml.xgboost;
 import com.google.common.base.Predicate;
 import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.Batch;
+import org.jpmml.evaluator.FloatEquivalence;
 import org.jpmml.evaluator.IntegrationTest;
 import org.junit.Test;
 
 public class XGBoostTest extends IntegrationTest {
 
 	public XGBoostTest(){
-		super(new XGBoostEquivalence(1));
+		super(new FloatEquivalence(2));
 	}
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("XGBoost", "Audit");
+		evaluate("XGBoost", "Audit", new FloatEquivalence(128));
 	}
 
 	@Test

@@ -21,8 +21,8 @@ package org.jpmml.sparkml.xgboost;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
 import ml.dmlc.xgboost4j.scala.Booster;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.mining.MiningModel;
