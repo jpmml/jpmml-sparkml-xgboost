@@ -1,0 +1,4 @@
+org/jpmml/sparkml/xgboost/XGBoostRegressionModelConverter.class
+org/jpmml/sparkml/xgboost/BoosterUtil$1.class
+org/jpmml/sparkml/xgboost/BoosterUtil.class
+org/jpmml/sparkml/xgboost/XGBoostClassificationModelConverter.class
