@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>ml.dmlc</groupId>
 			<artifactId>xgboost4j-spark</artifactId>
-			<version>0.7</version>
+			<version>0.72</version>
 			<scope>provided</scope>
 		</dependency>
 
