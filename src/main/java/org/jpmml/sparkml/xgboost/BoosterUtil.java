@@ -21,6 +21,8 @@ package org.jpmml.sparkml.xgboost;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import ml.dmlc.xgboost4j.scala.Booster;
@@ -30,6 +32,7 @@ import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Schema;
+import org.jpmml.xgboost.HasXGBoostOptions;
 import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.XGBoostUtil;
 
@@ -69,8 +72,12 @@ public class BoosterUtil {
 			}
 		};
 
+		Map<String, Object> options = new LinkedHashMap<>();
+		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, null);
+		options.put(HasXGBoostOptions.OPTION_COMPACT, false);
+
 		Schema xgbSchema = schema.toTransformedSchema(function);
 
-		return learner.encodeMiningModel(null, false, xgbSchema);
+		return learner.encodeMiningModel(options, xgbSchema);
 	}
 }
