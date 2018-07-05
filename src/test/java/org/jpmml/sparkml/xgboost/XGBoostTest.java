@@ -18,7 +18,8 @@
  */
 package org.jpmml.sparkml.xgboost;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
+
 import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.Batch;
 import org.jpmml.evaluator.FloatEquivalence;
