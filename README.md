@@ -6,7 +6,7 @@ JPMML-SparkML plugin for converting [XGBoost4J-Spark](https://github.com/dmlc/xg
 # Prerequisites #
 
 * [Apache Spark](http://spark.apache.org/) 2.0.X or 2.1.X.
-* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.8.
+* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.72.
 
 # Installation #
 
