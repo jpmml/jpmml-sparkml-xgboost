@@ -24,7 +24,7 @@ import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 import org.jpmml.sparkml.ClassificationModelConverter;
 
-public class XGBoostClassificationModelConverter extends ClassificationModelConverter/*<XGBoostClassificationModel>*/ {
+public class XGBoostClassificationModelConverter extends ClassificationModelConverter/*<XGBoostClassificationModel>*/ implements HasXGBoostOptions {
 
 	public XGBoostClassificationModelConverter(XGBoostClassificationModel model){
 		super(model);
@@ -36,6 +36,6 @@ public class XGBoostClassificationModelConverter extends ClassificationModelConv
 
 		Booster booster = model.booster();
 
-		return BoosterUtil.encodeBooster(booster, schema);
+		return BoosterUtil.encodeBooster(this, booster, schema);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Villu Ruusmann
+ * Copyright (c) 2018 Villu Ruusmann
  *
  * This file is part of JPMML-SparkML
  *
@@ -18,24 +18,11 @@
  */
 package org.jpmml.sparkml.xgboost;
 
-import ml.dmlc.xgboost4j.scala.Booster;
-import ml.dmlc.xgboost4j.scala.spark.XGBoostRegressionModel;
-import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.converter.Schema;
-import org.jpmml.sparkml.RegressionModelConverter;
+import org.jpmml.sparkml.HasOptions;
 
-public class XGBoostRegressionModelConverter extends RegressionModelConverter/*<XGBoostRegressionModel>*/ implements HasXGBoostOptions {
+public interface HasXGBoostOptions extends HasOptions {
 
-	public XGBoostRegressionModelConverter(XGBoostRegressionModel model){
-		super(model);
-	}
+	String OPTION_COMPACT = "compact";
 
-	@Override
-	public MiningModel encodeModel(Schema schema){
-		XGBoostRegressionModel model = (XGBoostRegressionModel)getTransformer();
-
-		Booster booster = model.booster();
-
-		return BoosterUtil.encodeBooster(this, booster, schema);
-	}
+	String OPTION_NTREE_LIMIT = "ntree_limit";
 }

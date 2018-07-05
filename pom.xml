@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>org.jpmml</groupId>
 			<artifactId>jpmml-sparkml</artifactId>
-			<version>[1.1.16,)</version>
+			<version>[1.1.20,)</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

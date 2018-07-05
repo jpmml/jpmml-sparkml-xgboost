@@ -32,7 +32,7 @@ import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Schema;
-import org.jpmml.xgboost.HasXGBoostOptions;
+import org.jpmml.sparkml.ModelConverter;
 import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.XGBoostUtil;
 
@@ -42,7 +42,7 @@ public class BoosterUtil {
 	}
 
 	static
-	public MiningModel encodeBooster(Booster booster, Schema schema){
+	public <C extends ModelConverter<?> & HasXGBoostOptions> MiningModel encodeBooster(C converter, Booster booster, Schema schema){
 		byte[] bytes = booster.toByteArray();
 
 		Learner learner;
@@ -73,8 +73,8 @@ public class BoosterUtil {
 		};
 
 		Map<String, Object> options = new LinkedHashMap<>();
-		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, null);
-		options.put(HasXGBoostOptions.OPTION_COMPACT, false);
+		options.put(org.jpmml.xgboost.HasXGBoostOptions.OPTION_COMPACT, converter.getOption(HasXGBoostOptions.OPTION_COMPACT, false));
+		options.put(org.jpmml.xgboost.HasXGBoostOptions.OPTION_NTREE_LIMIT, converter.getOption(HasXGBoostOptions.OPTION_NTREE_LIMIT, null));
 
 		Schema xgbSchema = schema.toTransformedSchema(function);
 
