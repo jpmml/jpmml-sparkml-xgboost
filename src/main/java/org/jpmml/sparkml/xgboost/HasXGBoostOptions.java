@@ -18,9 +18,9 @@
  */
 package org.jpmml.sparkml.xgboost;
 
-import org.jpmml.sparkml.HasOptions;
+import org.jpmml.sparkml.HasSparkMLOptions;
 
-public interface HasXGBoostOptions extends HasOptions {
+public interface HasXGBoostOptions extends HasSparkMLOptions {
 
 	String OPTION_COMPACT = "compact";
 

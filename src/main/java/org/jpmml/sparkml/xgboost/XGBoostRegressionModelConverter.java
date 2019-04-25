@@ -34,7 +34,7 @@ public class XGBoostRegressionModelConverter extends RegressionModelConverter/*<
 	public MiningModel encodeModel(Schema schema){
 		XGBoostRegressionModel model = (XGBoostRegressionModel)getTransformer();
 
-		Booster booster = model.booster();
+		Booster booster = model.nativeBooster();
 
 		return BoosterUtil.encodeBooster(this, booster, schema);
 	}

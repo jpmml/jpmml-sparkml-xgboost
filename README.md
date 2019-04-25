@@ -5,8 +5,8 @@ JPMML-SparkML plugin for converting [XGBoost4J-Spark](https://github.com/dmlc/xg
 
 # Prerequisites #
 
-* [Apache Spark](http://spark.apache.org/) 2.0.X or 2.1.X.
-* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.7.
+* [Apache Spark](http://spark.apache.org/) 2.3.2.
+* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.82.
 
 # Installation #
 
@@ -23,26 +23,26 @@ The JPMML-SparkML-XGBoost library extends the [JPMML-SparkML](https://github.com
 
 Launch the Spark shell with **XGBoost-extended** JPMML-SparkML-Package; use `--packages` to include the XGBoost4J-Spark runtime dependency:
 ```
-spark-shell --packages ml.dmlc:xgboost4j-spark:0.7 --jars jpmml-sparkml-package-1.1-SNAPSHOT.jar
+spark-shell --packages ml.dmlc:xgboost4j-spark:0.82 --jars jpmml-sparkml-package-1.1-SNAPSHOT.jar
 ```
 
 Fitting and exporting an example pipeline model:
 ```scala
-import ml.dmlc.xgboost4j.scala.spark.XGBoostEstimator
+import ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.feature.RFormula
-import org.jpmml.sparkml.ConverterUtil
+import org.jpmml.sparkml.PMMLBuilder
 
 val df = spark.read.option("header", "true").option("inferSchema", "true").csv("Iris.csv")
 
 val formula = new RFormula().setFormula("Species ~ .")
-var estimator = new XGBoostEstimator(Map("objective" -> "multi:softmax", "num_class" -> 3))
-estimator = estimator.set(estimator.round, 11)
+var estimator = new XGBoostClassifier(Map("objective" -> "multi:softmax", "num_class" -> 3))
+estimator = estimator.set(estimator.numRound, 11)
 
 val pipeline = new Pipeline().setStages(Array(formula, estimator))
 val pipelineModel = pipeline.fit(df)
 
-val pmmlBytes = ConverterUtil.toPMMLByteArray(df.schema, pipelineModel)
+val pmml = new PMMLBuilder(df.schema, pipelineModel).buildByteArray()
 println(new String(pmmlBytes, "UTF-8"))
 ```
 

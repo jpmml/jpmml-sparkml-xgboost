@@ -34,7 +34,7 @@ public class XGBoostClassificationModelConverter extends ClassificationModelConv
 	public MiningModel encodeModel(Schema schema){
 		XGBoostClassificationModel model = (XGBoostClassificationModel)getTransformer();
 
-		Booster booster = model.booster();
+		Booster booster = model.nativeBooster();
 
 		return BoosterUtil.encodeBooster(this, booster, schema);
 	}
