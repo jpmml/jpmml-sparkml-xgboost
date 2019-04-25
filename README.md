@@ -36,13 +36,15 @@ import org.jpmml.sparkml.PMMLBuilder
 val df = spark.read.option("header", "true").option("inferSchema", "true").csv("Iris.csv")
 
 val formula = new RFormula().setFormula("Species ~ .")
-var estimator = new XGBoostClassifier(Map("objective" -> "multi:softmax", "num_class" -> 3))
+
+//reference https://xgboost.readthedocs.io/en/latest/jvm/xgboost4j_spark_tutorial.html
+var estimator = new XGBoostClassifier(Map("objective" -> "multi:softprob", "num_class" -> 3)) 
 estimator = estimator.set(estimator.numRound, 11)
 
 val pipeline = new Pipeline().setStages(Array(formula, estimator))
 val pipelineModel = pipeline.fit(df)
 
-val pmml = new PMMLBuilder(df.schema, pipelineModel).buildByteArray()
+val pmmlBytes = new PMMLBuilder(df.schema, pipelineModel).buildByteArray()
 println(new String(pmmlBytes, "UTF-8"))
 ```
 
