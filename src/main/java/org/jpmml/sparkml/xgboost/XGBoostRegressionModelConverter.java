@@ -23,8 +23,9 @@ import ml.dmlc.xgboost4j.scala.spark.XGBoostRegressionModel;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 import org.jpmml.sparkml.RegressionModelConverter;
+import org.jpmml.xgboost.HasXGBoostOptions;
 
-public class XGBoostRegressionModelConverter extends RegressionModelConverter/*<XGBoostRegressionModel>*/ implements HasXGBoostOptions {
+public class XGBoostRegressionModelConverter extends RegressionModelConverter<XGBoostRegressionModel> implements HasXGBoostOptions {
 
 	public XGBoostRegressionModelConverter(XGBoostRegressionModel model){
 		super(model);
@@ -32,9 +33,9 @@ public class XGBoostRegressionModelConverter extends RegressionModelConverter/*<
 
 	@Override
 	public MiningModel encodeModel(Schema schema){
-		XGBoostRegressionModel model = (XGBoostRegressionModel)getTransformer();
+		XGBoostRegressionModel model = getTransformer();
 
-		Booster booster = model.booster();
+		Booster booster = model.nativeBooster();
 
 		return BoosterUtil.encodeBooster(this, booster, schema);
 	}

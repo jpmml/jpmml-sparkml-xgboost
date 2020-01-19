@@ -23,8 +23,9 @@ import ml.dmlc.xgboost4j.scala.spark.XGBoostClassificationModel;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 import org.jpmml.sparkml.ClassificationModelConverter;
+import org.jpmml.xgboost.HasXGBoostOptions;
 
-public class XGBoostClassificationModelConverter extends ClassificationModelConverter/*<XGBoostClassificationModel>*/ implements HasXGBoostOptions {
+public class XGBoostClassificationModelConverter extends ClassificationModelConverter<XGBoostClassificationModel> implements HasXGBoostOptions {
 
 	public XGBoostClassificationModelConverter(XGBoostClassificationModel model){
 		super(model);
@@ -32,9 +33,9 @@ public class XGBoostClassificationModelConverter extends ClassificationModelConv
 
 	@Override
 	public MiningModel encodeModel(Schema schema){
-		XGBoostClassificationModel model = (XGBoostClassificationModel)getTransformer();
+		XGBoostClassificationModel model = getTransformer();
 
-		Booster booster = model.booster();
+		Booster booster = model.nativeBooster();
 
 		return BoosterUtil.encodeBooster(this, booster, schema);
 	}

@@ -5,8 +5,8 @@ JPMML-SparkML plugin for converting [XGBoost4J-Spark](https://github.com/dmlc/xg
 
 # Prerequisites #
 
-* [Apache Spark](http://spark.apache.org/) 2.0.X or 2.1.X.
-* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.7.
+* [Apache Spark](http://spark.apache.org/) 2.3.X or 2.4.X.
+* [XGBoost4J-Spark](https://github.com/dmlc/xgboost/tree/master/jvm-packages) 0.7 or newer.
 
 # Installation #
 
@@ -23,7 +23,7 @@ The JPMML-SparkML-XGBoost library extends the [JPMML-SparkML](https://github.com
 
 Launch the Spark shell with **XGBoost-extended** JPMML-SparkML-Package; use `--packages` to include the XGBoost4J-Spark runtime dependency:
 ```
-spark-shell --packages ml.dmlc:xgboost4j-spark:0.7 --jars jpmml-sparkml-package-1.1-SNAPSHOT.jar
+spark-shell --packages ml.dmlc:xgboost4j-spark:0.90 --jars jpmml-sparkml-package-1.1-SNAPSHOT.jar
 ```
 
 Fitting and exporting an example pipeline model:
@@ -48,8 +48,10 @@ println(new String(pmmlBytes, "UTF-8"))
 
 # License #
 
-JPMML-SparkML-XGBoost is licensed under the [GNU Affero General Public License (AGPL) version 3.0](http://www.gnu.org/licenses/agpl-3.0.html). Other licenses are available on request.
+JPMML-SparkML-XGBoost is dual-licensed under the [GNU Affero General Public License (AGPL) version 3.0](https://www.gnu.org/licenses/agpl-3.0.html), and a commercial license.
 
 # Additional information #
 
-Please contact [info@openscoring.io](mailto:info@openscoring.io)
+JPMML-SparkML-XGBoost is developed and maintained by Openscoring Ltd, Estonia.
+
+Interested in using JPMML software in your application? Please contact [info@openscoring.io](mailto:info@openscoring.io)
