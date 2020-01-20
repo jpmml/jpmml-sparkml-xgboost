@@ -21,28 +21,28 @@ The build installs JPMML-SparkML-XGBoost library into local repository using coo
 
 The JPMML-SparkML-XGBoost library extends the [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library with support for `ml.dmlc.xgboost4j.scala.spark.XGBoostClassificationModel` and `ml.dmlc.xgboost4j.scala.spark.XGBoostRegressionModel` prediction model classes.
 
-Launch the Spark shell with **XGBoost-extended** JPMML-SparkML-Package; use `--packages` to include the XGBoost4J-Spark runtime dependency:
+Launch the Spark shell; use the `--packages` command-line option to include XGBoost4J-Spark, JPMML-SparkML and JPMML-XGBoost runtime dependencies, and the `--jars` command-line option to include the JPMML-SparkML-XGBoost runtime dependency:
 ```
-spark-shell --packages ml.dmlc:xgboost4j-spark:0.90 --jars jpmml-sparkml-package-1.1-SNAPSHOT.jar
+spark-shell --packages ml.dmlc:xgboost4j-spark:0.90,org.jpmml:jpmml-sparkml:1.5.7,org.jpmml:jpmml-xgboost:1.3.13 --jars target/jpmml-sparkml-xgboost-1.0-SNAPSHOT.jar
 ```
 
 Fitting and exporting an example pipeline model:
 ```scala
-import ml.dmlc.xgboost4j.scala.spark.XGBoostEstimator
+import ml.dmlc.xgboost4j.scala.spark.XGBoostClassifier
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.feature.RFormula
-import org.jpmml.sparkml.ConverterUtil
+import org.jpmml.sparkml.PMMLBuilder
 
 val df = spark.read.option("header", "true").option("inferSchema", "true").csv("Iris.csv")
 
 val formula = new RFormula().setFormula("Species ~ .")
-var estimator = new XGBoostEstimator(Map("objective" -> "multi:softmax", "num_class" -> 3))
-estimator = estimator.set(estimator.round, 11)
+var classifier = new XGBoostClassifier(Map("objective" -> "multi:softmax", "num_class" -> 3))
+classifier = classifier.set(classifier.numRound, 11)
 
-val pipeline = new Pipeline().setStages(Array(formula, estimator))
+val pipeline = new Pipeline().setStages(Array(formula, classifier))
 val pipelineModel = pipeline.fit(df)
 
-val pmmlBytes = ConverterUtil.toPMMLByteArray(df.schema, pipelineModel)
+val pmmlBytes = new PMMLBuilder(df.schema, pipelineModel).buildByteArray()
 println(new String(pmmlBytes, "UTF-8"))
 ```
 
