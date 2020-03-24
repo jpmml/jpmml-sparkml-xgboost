@@ -1,6 +1,6 @@
 import java.nio.file.{Files, Paths}
 
-import ml.dmlc.xgboost4j.scala.spark.XGBoostEstimator
+import ml.dmlc.xgboost4j.scala.spark.XGBoostRegressor
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.feature.RFormula
 import org.apache.spark.sql.types.StringType
@@ -11,10 +11,9 @@ df = df.withColumn("originTmp", df("origin").cast(StringType)).drop("origin").wi
 
 val formula = new RFormula().setFormula("mpg ~ .")
 
-var estimator = new XGBoostEstimator(Map("objective" -> "reg:linear"))
-estimator = estimator.set(estimator.round, 101)
+var regressor = new XGBoostRegressor(Map("objective" -> "reg:squarederror", "num_round" -> 101))
 
-val pipeline = new Pipeline().setStages(Array(formula, estimator))
+val pipeline = new Pipeline().setStages(Array(formula, regressor))
 val pipelineModel = pipeline.fit(df)
 
 var xgbDf = pipelineModel.transform(df)
