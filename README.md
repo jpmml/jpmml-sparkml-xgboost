@@ -23,7 +23,7 @@ The JPMML-SparkML-XGBoost library extends the [JPMML-SparkML](https://github.com
 
 Launch the Spark shell; use the `--packages` command-line option to include XGBoost4J-Spark, JPMML-SparkML and JPMML-XGBoost runtime dependencies, and the `--jars` command-line option to include the JPMML-SparkML-XGBoost runtime dependency:
 ```
-spark-shell --packages ml.dmlc:xgboost4j-spark:0.90,org.jpmml:jpmml-sparkml:1.5.7,org.jpmml:jpmml-xgboost:1.3.13 --jars target/jpmml-sparkml-xgboost-1.0-SNAPSHOT.jar
+spark-shell --packages ml.dmlc:xgboost4j-spark:0.90,org.jpmml:jpmml-sparkml:1.5.7,org.jpmml:jpmml-xgboost:1.3.15 --jars target/jpmml-sparkml-xgboost-1.0-SNAPSHOT.jar
 ```
 
 Fitting and exporting an example pipeline model:
@@ -48,10 +48,12 @@ println(new String(pmmlBytes, "UTF-8"))
 
 # License #
 
-JPMML-SparkML-XGBoost is dual-licensed under the [GNU Affero General Public License (AGPL) version 3.0](https://www.gnu.org/licenses/agpl-3.0.html), and a commercial license.
+JPMML-SparkML-XGBoost is licensed under the terms and conditions of the [GNU Affero General Public License, Version 3.0](https://www.gnu.org/licenses/agpl-3.0.html).
+
+If you would like to use JPMML-SparkML-XGBoost in a proprietary software project, then it is possible to enter into a licensing agreement which makes JPMML-SkLearn available under the terms and conditions of the [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause) instead.
 
 # Additional information #
 
 JPMML-SparkML-XGBoost is developed and maintained by Openscoring Ltd, Estonia.
 
-Interested in using JPMML software in your application? Please contact [info@openscoring.io](mailto:info@openscoring.io)
+Interested in using [Java PMML API](https://github.com/jpmml) software in your company? Please contact [info@openscoring.io](mailto:info@openscoring.io)
