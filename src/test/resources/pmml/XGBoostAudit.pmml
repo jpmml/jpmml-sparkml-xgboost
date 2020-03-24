@@ -2,7 +2,7 @@
 <PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
 	<Header>
 		<Application name="JPMML-SparkML" version="1.5.7"/>
-		<Timestamp>2020-03-24T07:24:06Z</Timestamp>
+		<Timestamp>2020-03-24T21:23:14Z</Timestamp>
 	</Header>
 	<DataDictionary>
 		<DataField name="Adjusted" optype="categorical" dataType="string">
@@ -14327,8 +14327,8 @@
 						<MiningField name="xgbValue"/>
 					</MiningSchema>
 					<Output>
-						<OutputField name="probability(0)" optype="continuous" dataType="float" feature="probability" value="0"/>
-						<OutputField name="probability(1)" optype="continuous" dataType="float" feature="probability" value="1"/>
+						<OutputField name="probability(0)" optype="continuous" dataType="double" feature="probability" value="0"/>
+						<OutputField name="probability(1)" optype="continuous" dataType="double" feature="probability" value="1"/>
 					</Output>
 					<RegressionTable intercept="0.0" targetCategory="1">
 						<NumericPredictor name="xgbValue" coefficient="1.0"/>
