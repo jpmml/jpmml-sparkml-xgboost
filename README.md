@@ -50,7 +50,7 @@ println(new String(pmmlBytes, "UTF-8"))
 
 JPMML-SparkML-XGBoost is licensed under the terms and conditions of the [GNU Affero General Public License, Version 3.0](https://www.gnu.org/licenses/agpl-3.0.html).
 
-If you would like to use JPMML-SparkML-XGBoost in a proprietary software project, then it is possible to enter into a licensing agreement which makes JPMML-SkLearn available under the terms and conditions of the [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause) instead.
+If you would like to use JPMML-SparkML-XGBoost in a proprietary software project, then it is possible to enter into a licensing agreement which makes JPMML-SparkML-XGBoost available under the terms and conditions of the [BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause) instead.
 
 # Additional information #
 
